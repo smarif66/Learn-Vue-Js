@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>First Vue Js</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="
+	sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Vue CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="root" class="container">
+		
+		<!-- First-->
+		<h1>{{ message }}</h1>
+
+		<!-- Second -->
+		<h1 v-bind:class="myClass">{{ message }}</h1>
+
+		<!-- Third -->
+		<ul class="list-group bg-info text-center">
+			<li v-for="list in lists">{{ list }}</li>
+		</ul>
+
+		<!-- Third -->
+		<ul class="list-group bg-info text-center" v-show='showDetails'>
+			<li v-for="list in lists2" class=list-group-item><span>{{ list.name }}{{ list.father }}{{ list.mother }}{{ list.district }}</span></li>
+		</ul>
+
+		<!-- Fourth -->
+		<button class="btn btn-info" v-show='hideMe' v-on:Click="showProfile">Show Details</button>
+		<button class="btn btn-info" v-show='showME' v-on:Click="hideProfile">Hide Details</button>
+
+		<!-- Fifth -->
+		<hr><input class="form-control" type="" v-model="message">
+
+	</div>
+
+	<script type="text/javascript">
+		
+		new Vue({
+			el: "#root",
+			data: {
+				message: 'This HEADING come from Vue',
+				myClass: 'alert alert-danger',
+				lists: ['Arif', 'Asif', 'Atier'],
+				lists2: [
+					{
+						name: 'Md Ariful Islam',
+					},
+					{
+						father: 'Md Forhad Hossain'
+					},
+					{
+						mother: 'Mst Nur Akter Banu'
+					},
+					{
+						district: 'Dinajpur'
+					}
+				],
+				showDetails: false,
+				showME: false,
+				hideMe: true,
+			},
+			methods:{
+				showProfile: function()
+				{
+					this.showDetails = true;
+					this.hideMe = false;
+					this.showME = true;
+				},
+				hideProfile: function()
+				{
+					this.showDetails = false;
+					this.showME = false;
+					this.hideMe = true;
+
+				}
+			}
+
+		})
+	</script>
+</body>
+</html>
